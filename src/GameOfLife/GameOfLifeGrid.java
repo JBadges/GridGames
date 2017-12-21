@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class GameOfLifeGrid {
 
-    public static final int SIZE = 20;
+    public static final int SIZE = 40;
 
     private GameOfLifeSlot[][] grid;
     private Stage stage;
