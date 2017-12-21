@@ -9,5 +9,6 @@ public interface I_GridSlot {
 
     Point2D getCoord();
     double getSize();
+    boolean isMouseOnTop();
 
 }

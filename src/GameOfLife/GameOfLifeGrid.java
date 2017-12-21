@@ -1,6 +1,7 @@
 package GameOfLife;
 
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.Random;
@@ -13,8 +14,10 @@ public class GameOfLifeGrid {
     public static final int SIZE = 20;
 
     private GameOfLifeSlot[][] grid;
+    private Stage stage;
 
-    public GameOfLifeGrid(int rows, int cols) {
+    public GameOfLifeGrid(Stage stage, int rows, int cols) {
+        this.stage = stage;
         resetGrid(rows, cols);
     }
 
@@ -22,18 +25,8 @@ public class GameOfLifeGrid {
         grid = new GameOfLifeSlot[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                Color c;
-                switch (new Random().nextInt(5)) {
-                    case 0:
-                        c = Color.RED;
-                        break;
-                    case 1:
-                        c = Color.BLUE;
-                        break;
-                    default:
-                        c = Color.BLACK;
-                }
-                grid[row][col] = new GameOfLifeSlot(new Point(row * SIZE, col * SIZE), SIZE, c);
+                Color c = Color.BLACK;
+                grid[row][col] = new GameOfLifeSlot(stage, new Point(row * SIZE, col * SIZE), SIZE, c);
             }
         }
     }
@@ -164,6 +157,18 @@ public class GameOfLifeGrid {
 
     public int getRows() {
         return grid.length;
+    }
+
+    public GameOfLifeSlot findHoveredSlot(){
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getCols(); col++) {
+                GameOfLifeSlot gameOfLifeSlot = getCell(row, col);
+                if(gameOfLifeSlot.isMouseOnTop()){
+                    return gameOfLifeSlot;
+                }
+            }
+        }
+        return null;
     }
 
 }
