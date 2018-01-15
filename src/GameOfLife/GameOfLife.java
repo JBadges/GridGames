@@ -46,10 +46,10 @@ public class GameOfLife extends Application {
             public void handle(MouseEvent event) {
                 if(numberOfTurns < 50) {
                     GameOfLifeSlot gameOfLifeSlot = grid.findHoveredSlot();
-                    if (gameOfLifeSlot != null) {
+                    if (gameOfLifeSlot != null && gameOfLifeSlot.getColor().equals(Color.BLACK)) {
                         gameOfLifeSlot.setColor(numberOfTurns % 2 == 0 ? Color.BLUE : Color.RED);
+                        numberOfTurns ++;
                     }
-                    numberOfTurns ++;
                 } else {
                     new AnimationTimer() {
                         @Override
