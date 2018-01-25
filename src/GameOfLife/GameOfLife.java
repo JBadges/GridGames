@@ -24,8 +24,8 @@ public class GameOfLife extends Application {
     int numberOfTurns = 0;
     GameOfLifeGrid grid;
 
-    public static void main(String[] args) {
-        launch(args);
+    public GameOfLife (Stage name) {
+        start(name);
     }
 
     @Override
