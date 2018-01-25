@@ -16,10 +16,9 @@ public class TicTacToe extends Application {
     TicTacToeGrid grid;
     boolean isPlayerOneTurn = true;
 
-    public static void main(String[] args) {
-        launch(args);
+    public TicTacToe (Stage name) {
+        start(name);
     }
-
     @Override
     public void start(Stage primaryStage) {
         grid = new TicTacToeGrid(primaryStage);
