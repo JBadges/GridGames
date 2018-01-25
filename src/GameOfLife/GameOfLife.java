@@ -54,13 +54,28 @@ public class GameOfLife extends Application {
                     new AnimationTimer() {
                         @Override
                         public void handle(long now) {
-                            if (now - lastTime > 100 * 1_000_000) {
+                            if (now - lastTime > 10 * 1_000_000) {
                                 if (iterations > 1000) {
-                                    grid.resetGrid(grid.getRows(), grid.getCols());
-                                    iterations = 0;
+                                    int numOfBlues = 0;
+                                    int numOfReds = 0;
+                                    for(int row = 0; row < grid.getRows(); row++){
+                                        for(int col = 0; col < grid.getCols(); col++){
+                                            if(grid.getColor(row,col).equals(Color.RED))
+                                                numOfReds++;
+                                            if(grid.getColor(row,col).equals(Color.BLUE))
+                                                numOfBlues++;
+                                        }
+                                    }
+                                    if(numOfBlues > numOfReds)
+                                        System.out.println("BLUE WON!!!");
+                                    if(numOfBlues < numOfReds)
+                                        System.out.println("RED WON!!!");
+                                    if(numOfBlues == numOfReds)
+                                        System.out.println("TIE GAME :(");
+                                } else {
+                                    updateScreen(gc);
+                                    grid.update();
                                 }
-                                updateScreen(gc);
-                                grid.update();
                                 lastTime = now;
                                 iterations++;
                             }
