@@ -39,11 +39,15 @@ public class TicTacToe extends Application {
                     int[] hoveredLoc = grid.findHoveredSlot();
                     TicTacToePiece ticTacToePiece = grid.getCell(hoveredLoc[0], hoveredLoc[1]);
                     if (isPlayerOneTurn) {
-                        grid.setPiece(hoveredLoc[0], hoveredLoc[1], 'X');
-                        isPlayerOneTurn = !isPlayerOneTurn;
+                        if(grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000' ) {
+                            grid.setPiece(hoveredLoc[0], hoveredLoc[1], 'X');
+                            isPlayerOneTurn = !isPlayerOneTurn;
+                        }
                     } else {
-                        grid.setPiece(hoveredLoc[0], hoveredLoc[1], 'O');
-                        isPlayerOneTurn = !isPlayerOneTurn;
+                        if(grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000' ) {
+                            grid.setPiece(hoveredLoc[0], hoveredLoc[1], 'O');
+                            isPlayerOneTurn = !isPlayerOneTurn;
+                        }
                     }
                     updateScreen(gc);
                     if (grid.whoWon() != '\u0000') {
