@@ -39,10 +39,10 @@ public class TicTacToeGrid {
     }
 
     public void setPiece(int row, int col, char piece) {
-        if (piece == 'X')
-            grid[row][col] = new TicTacToePieceX(stage, new Point(row * SIZE, col * SIZE), SIZE);
-        else if (piece == 'O')
-            grid[row][col] = new TicTacToePieceO(stage, new Point(row * SIZE, col * SIZE), SIZE);
+        if (piece == 'B')
+            grid[row][col] = new TicTacToePieceBlack(stage, new Point(row * SIZE, col * SIZE), SIZE);
+        else if (piece == 'Y')
+            grid[row][col] = new TicTacToePieceYellow(stage, new Point(row * SIZE, col * SIZE), SIZE);
     }
 
     public int[] findHoveredSlot() {
@@ -57,7 +57,7 @@ public class TicTacToeGrid {
         return null;
     }
 
-    public char whoWon() {
+    public String whoWon() {
         /*
          * 0,0 0,1 0,2
          * 1,0 1,1 1,2
@@ -70,25 +70,25 @@ public class TicTacToeGrid {
          * 0,0 1,1 2,2
          * 2,0 1,1 0,2
          */
-        char winner = '\u0000';
-        if (getPiece(0, 0) == getPiece(0, 1) && getPiece(0, 1) == getPiece(0, 2) && getPiece(0, 2) == 'X'
-                || getPiece(1, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(1, 2) && getPiece(1, 2) == 'X' ||
-                getPiece(2, 0) == getPiece(2, 1) && getPiece(2, 1) == getPiece(2, 2) && getPiece(2, 2) == 'X' ||
-                getPiece(0, 0) == getPiece(1, 0) && getPiece(1, 0) == getPiece(2, 0) && getPiece(2, 0) == 'X' ||
-                getPiece(0, 1) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 1) && getPiece(2, 1) == 'X' ||
-                getPiece(0, 2) == getPiece(1, 2) && getPiece(1, 2) == getPiece(2, 2) && getPiece(2, 2) == 'X' ||
-                getPiece(0, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 2) && getPiece(2, 2) == 'X' ||
-                getPiece(2, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(0, 2) && getPiece(0, 2) == 'X') {
-            winner = 'X';
-        } else if (getPiece(0, 0) == getPiece(0, 1) && getPiece(0, 1) == getPiece(0, 2) && getPiece(0, 2) == 'O'
-                || getPiece(1, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(1, 2) && getPiece(1, 2) == 'O' ||
-                getPiece(2, 0) == getPiece(2, 1) && getPiece(2, 1) == getPiece(2, 2) && getPiece(2, 2) == 'O' ||
-                getPiece(0, 0) == getPiece(1, 0) && getPiece(1, 0) == getPiece(2, 0) && getPiece(2, 0) == 'O' ||
-                getPiece(0, 1) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 1) && getPiece(2, 1) == 'O' ||
-                getPiece(0, 2) == getPiece(1, 2) && getPiece(1, 2) == getPiece(2, 2) && getPiece(2, 2) == 'O' ||
-                getPiece(0, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 2) && getPiece(2, 2) == 'O' ||
-                getPiece(2, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(0, 2) && getPiece(0, 2) == 'O') {
-            winner = 'O';
+        String winner = "\u0000";
+        if (getPiece(0, 0) == getPiece(0, 1) && getPiece(0, 1) == getPiece(0, 2) && getPiece(0, 2) == 'B'
+                || getPiece(1, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(1, 2) && getPiece(1, 2) == 'B' ||
+                getPiece(2, 0) == getPiece(2, 1) && getPiece(2, 1) == getPiece(2, 2) && getPiece(2, 2) == 'B' ||
+                getPiece(0, 0) == getPiece(1, 0) && getPiece(1, 0) == getPiece(2, 0) && getPiece(2, 0) == 'B' ||
+                getPiece(0, 1) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 1) && getPiece(2, 1) == 'B' ||
+                getPiece(0, 2) == getPiece(1, 2) && getPiece(1, 2) == getPiece(2, 2) && getPiece(2, 2) == 'B' ||
+                getPiece(0, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 2) && getPiece(2, 2) == 'B' ||
+                getPiece(2, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(0, 2) && getPiece(0, 2) == 'B') {
+            winner = "BLACK";
+        } else if (getPiece(0, 0) == getPiece(0, 1) && getPiece(0, 1) == getPiece(0, 2) && getPiece(0, 2) == 'Y'
+                || getPiece(1, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(1, 2) && getPiece(1, 2) == 'Y' ||
+                getPiece(2, 0) == getPiece(2, 1) && getPiece(2, 1) == getPiece(2, 2) && getPiece(2, 2) == 'Y' ||
+                getPiece(0, 0) == getPiece(1, 0) && getPiece(1, 0) == getPiece(2, 0) && getPiece(2, 0) == 'Y' ||
+                getPiece(0, 1) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 1) && getPiece(2, 1) == 'Y' ||
+                getPiece(0, 2) == getPiece(1, 2) && getPiece(1, 2) == getPiece(2, 2) && getPiece(2, 2) == 'Y' ||
+                getPiece(0, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(2, 2) && getPiece(2, 2) == 'Y' ||
+                getPiece(2, 0) == getPiece(1, 1) && getPiece(1, 1) == getPiece(0, 2) && getPiece(0, 2) == 'Y') {
+            winner = "YELLOW";
         }
         return winner;
     }
