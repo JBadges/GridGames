@@ -82,7 +82,6 @@ public class GameOfLifeSlot implements I_GridSlot  {
     @Override
     public boolean isMouseOnTop() {
         Point2D.Double mousePoint = new Point2D.Double(MouseInfo.getPointerInfo().getLocation().getX() - stage.getX() - 8, MouseInfo.getPointerInfo().getLocation().getY() - stage.getY() - 30);
-        System.out.println(mousePoint);
         if(mousePoint.getX() > getCoord().getX() && mousePoint.getX() < getCoord().getX() + size && mousePoint.getY() > getCoord().getY() && mousePoint.getY() < getCoord().getY() + size)
             return true;
         return false;
