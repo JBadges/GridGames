@@ -3,6 +3,7 @@ package TicTacToe;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 
 public class TicTacToeGrid {
@@ -43,6 +44,10 @@ public class TicTacToeGrid {
             grid[row][col] = new TicTacToePieceBlack(stage, new Point(row * SIZE, col * SIZE), SIZE);
         else if (piece == 'Y')
             grid[row][col] = new TicTacToePieceYellow(stage, new Point(row * SIZE, col * SIZE), SIZE);
+    }
+
+    public void setPiece(Point2D gridPos, char piece) {
+        setPiece((int)gridPos.getX(),(int) gridPos.getY(), piece);
     }
 
     public int[] findHoveredSlot() {
