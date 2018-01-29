@@ -3,15 +3,16 @@ package GameOfLife;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 
 
 /**
@@ -22,9 +23,10 @@ public class GameOfLife extends Application {
     double lastTime = 0;
     int iterations = 0;
     int numberOfTurns = 0;
+    boolean gameOver = false;
     GameOfLifeGrid grid;
 
-    public GameOfLife (Stage name) {
+    public GameOfLife(Stage name) {
         start(name);
     }
 
@@ -44,11 +46,11 @@ public class GameOfLife extends Application {
         root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(numberOfTurns < 50) {
+                if (numberOfTurns < 50) {
                     GameOfLifeSlot gameOfLifeSlot = grid.findHoveredSlot();
                     if (gameOfLifeSlot != null && gameOfLifeSlot.getColor().equals(Color.BLACK)) {
                         gameOfLifeSlot.setColor(numberOfTurns % 2 == 0 ? Color.BLUE : Color.RED);
-                        numberOfTurns ++;
+                        numberOfTurns++;
                     }
                 } else {
                     new AnimationTimer() {
@@ -58,31 +60,78 @@ public class GameOfLife extends Application {
                                 if (iterations > 1000) {
                                     int numOfBlues = 0;
                                     int numOfReds = 0;
-                                    for(int row = 0; row < grid.getRows(); row++){
-                                        for(int col = 0; col < grid.getCols(); col++){
-                                            if(grid.getColor(row,col).equals(Color.RED))
+                                    for (int row = 0; row < grid.getRows(); row++) {
+                                        for (int col = 0; col < grid.getCols(); col++) {
+                                            if (grid.getColor(row, col).equals(Color.RED))
                                                 numOfReds++;
-                                            if(grid.getColor(row,col).equals(Color.BLUE))
+                                            if (grid.getColor(row, col).equals(Color.BLUE))
                                                 numOfBlues++;
                                         }
                                     }
-                                    if(numOfBlues > numOfReds)
-                                        System.out.println("BLUE WON!!!");
-                                    if(numOfBlues < numOfReds)
-                                        System.out.println("RED WON!!!");
-                                    if(numOfBlues == numOfReds)
-                                        System.out.println("TIE GAME :(");
+                                    if (numOfBlues > numOfReds && !gameOver) {
+                                        gameOver = true;
+                                        System.out.println("blue win");
+                                        Button blueWin = new Button();
+                                        blueWin.setPrefWidth(800);
+                                        blueWin.setPrefHeight(800);
+                                        blueWin.setText("BLUE WON YAY!");
+
+                                        root.getChildren().add(blueWin);
+
+                                        blueWin.setOnAction(new EventHandler<ActionEvent>() {
+
+                                            public void handle(ActionEvent event) {
+                                                System.exit(0);
+                                            }
+                                        });
+
+                                    }
+                                    if (numOfBlues < numOfReds && !gameOver) {
+                                        gameOver = true;
+                                        Button redWin = new Button();
+                                        redWin.setPrefWidth(800);
+                                        redWin.setPrefHeight(800);
+                                        redWin.setText("RED WON YAY!");
+
+                                        root.getChildren().add(redWin);
+
+
+                                        redWin.setOnAction(new EventHandler<ActionEvent>() {
+
+                                            public void handle(ActionEvent event) {
+
+                                                System.exit(0);
+                                            }
+                                        });
+                                    }
+                                    if (numOfBlues == numOfReds && !gameOver) {
+                                        gameOver = true;
+                                        Button tie = new Button();
+                                        tie.setPrefWidth(800);
+                                        tie.setPrefHeight(800);
+                                        tie.setText("TIE GAME :(");
+
+                                        root.getChildren().add(tie);
+
+
+                                        tie.setOnAction(new EventHandler<ActionEvent>() {
+                                            public void handle(ActionEvent event) {
+                                                System.exit(0);
+                                            }
+                                        });
+                                    }
                                 } else {
                                     updateScreen(gc);
                                     grid.update();
                                 }
-                                lastTime = now;
-                                iterations++;
                             }
+                            lastTime = now;
+                            iterations++;
                         }
                     }.start();
                 }
                 updateScreen(gc);
+
             }
         });
 
