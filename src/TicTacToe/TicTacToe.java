@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,10 +27,10 @@ public class TicTacToe extends Application {
     public void start(Stage primaryStage) {
         grid = new TicTacToeGrid(primaryStage);
         primaryStage.setTitle("Tic Tac Toe");
-        Group root = new Group();
+        Parent root = new Group();
         Canvas canvas = new Canvas(800, 800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        root.getChildren().add(canvas);
+        ((Group)root).getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
@@ -61,7 +62,7 @@ public class TicTacToe extends Application {
                         btnWin.setPrefHeight(800);
                         btnWin.setText(grid.whoWon() + " WON YAY!");
 
-                        root.getChildren().add(btnWin);
+                        ((Group)root).getChildren().add(btnWin);
 
 
                         btnWin.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,7 +80,7 @@ public class TicTacToe extends Application {
                         btnTie.setPrefHeight(800);
                         btnTie.setText("TIE GAME!");
 
-                        root.getChildren().add(btnTie);
+                        ((Group)root).getChildren().add(btnTie);
 
 
                         btnTie.setOnAction(new EventHandler<ActionEvent>() {
