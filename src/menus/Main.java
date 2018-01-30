@@ -15,12 +15,15 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+//Main class to be run.
 public class Main extends Application {
 
+    //Main method that launches the application.
     public static void main(String[] args) {
         launch();
     }
 
+    //Create the main menu with two buttons to give user the option to play either game.
     public void start(Stage primaryStage) {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Jackson and Kyle's Games");
@@ -30,6 +33,7 @@ public class Main extends Application {
         btn.setPrefHeight(400);
         btn.setText("Game Of Life");
 
+        //Set up the Game of Life.
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
@@ -44,6 +48,7 @@ public class Main extends Application {
         btn2.setPrefHeight(400);
         btn2.setText("Tic Tac Toe");
 
+        //Set up Tic Tac Toe.
         btn2.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
