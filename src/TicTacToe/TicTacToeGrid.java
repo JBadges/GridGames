@@ -58,7 +58,7 @@ public class TicTacToeGrid {
 
     //Method overload. This method takes in a coordinate and type of piece then calls the setPiece method above.
     public void setPiece(Point2D gridPos, char piece) {
-        setPiece((int)gridPos.getX(),(int) gridPos.getY(), piece);
+        setPiece((int) gridPos.getX(), (int) gridPos.getY(), piece);
     }
 
     //Returns the array position of the Tic Tac Toe piece that is being hovered.

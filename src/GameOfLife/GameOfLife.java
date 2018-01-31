@@ -30,6 +30,7 @@ public class GameOfLife extends Application {
         start(name);
     }
 
+    //Set up scene for Game Of Life
     @Override
     public void start(Stage primaryStage) {
         grid = new GameOfLifeGrid(primaryStage, 800 / GameOfLifeGrid.SIZE, 800 / GameOfLifeGrid.SIZE);
@@ -41,11 +42,14 @@ public class GameOfLife extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
+        //Clear and create a fresh grid
         grid.resetGrid(grid.getRows(), grid.getCols());
+        //Update the screen
         updateScreen(gc);
         root.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                //For the first 50 clicks (25 per player) do not run the simulation and take user input
                 if (numberOfTurns < 50) {
                     GameOfLifeSlot gameOfLifeSlot = grid.findHoveredSlot();
                     if (gameOfLifeSlot != null && gameOfLifeSlot.getColor().equals(Color.BLACK)) {
@@ -53,6 +57,7 @@ public class GameOfLife extends Application {
                         numberOfTurns++;
                     }
                 } else {
+                    //Loop 1000 times at 10 milliseconds each iteration (1_000_000 nanosecond = 1 ms)
                     new AnimationTimer() {
                         @Override
                         public void handle(long now) {
@@ -66,8 +71,10 @@ public class GameOfLife extends Application {
                                                 numOfReds++;
                                             if (grid.getColor(row, col).equals(Color.BLUE))
                                                 numOfBlues++;
+
                                         }
                                     }
+                                    //Blue wins check
                                     if (numOfBlues > numOfReds && !gameOver) {
                                         gameOver = true;
                                         System.out.println("blue win");
@@ -86,6 +93,7 @@ public class GameOfLife extends Application {
                                         });
 
                                     }
+                                    //Red wins check
                                     if (numOfBlues < numOfReds && !gameOver) {
                                         gameOver = true;
                                         Button redWin = new Button();
@@ -104,6 +112,7 @@ public class GameOfLife extends Application {
                                             }
                                         });
                                     }
+                                    //Tie game check
                                     if (numOfBlues == numOfReds && !gameOver) {
                                         gameOver = true;
                                         Button tie = new Button();
@@ -121,10 +130,12 @@ public class GameOfLife extends Application {
                                         });
                                     }
                                 } else {
+                                    //If the 1000 iterations of game simulation are not done update the screen and grid
                                     updateScreen(gc);
                                     grid.update();
                                 }
                             }
+                            //Update last time to keep the time difference calculation updated
                             lastTime = now;
                             iterations++;
                         }
@@ -137,6 +148,7 @@ public class GameOfLife extends Application {
 
     }
 
+    //Uses graphics context to display the grid to the screen
     private void updateScreen(GraphicsContext gc) {
         for (int row = 0; row < grid.getRows(); row++) {
             for (int col = 0; col < grid.getCols(); col++) {

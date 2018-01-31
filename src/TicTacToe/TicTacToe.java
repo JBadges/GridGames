@@ -23,7 +23,7 @@ public class TicTacToe extends Application {
     int turnNumber = 1;
 
     //Non-default constructor that calls the start method
-    public TicTacToe (Stage name) {
+    public TicTacToe(Stage name) {
         start(name);
     }
 
@@ -37,7 +37,7 @@ public class TicTacToe extends Application {
         Canvas canvas = new Canvas(800, 800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         //Downcast
-        ((Group)root).getChildren().add(canvas);
+        ((Group) root).getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
@@ -55,7 +55,7 @@ public class TicTacToe extends Application {
                     TicTacToePiece ticTacToePiece = grid.getCell(hoveredLoc[0], hoveredLoc[1]);
                     //If it is player's one turn and the space is free, set the piece to 'B'.
                     if (isPlayerOneTurn) {
-                        if(grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000' ) {
+                        if (grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000') {
                             grid.setPiece(hoveredLoc[0], hoveredLoc[1], 'B');
                             isPlayerOneTurn = !isPlayerOneTurn;
                             turnNumber++;
@@ -63,7 +63,7 @@ public class TicTacToe extends Application {
                     }
                     //If it is not player's one turn, and the space is free, set the piece to 'Y'.
                     else {
-                        if(grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000' ) {
+                        if (grid.getPiece(hoveredLoc[0], hoveredLoc[1]) == '\u0000') {
                             grid.setPiece(new Point2D.Double(hoveredLoc[0], hoveredLoc[1]), 'Y');
                             isPlayerOneTurn = !isPlayerOneTurn;
                             turnNumber++;
@@ -80,14 +80,15 @@ public class TicTacToe extends Application {
                         btnWin.setText(grid.whoWon() + " WON YAY!");
 
                         //Downcast
-                        ((Group)root).getChildren().add(btnWin);
+                        ((Group) root).getChildren().add(btnWin);
 
                         //When the win message is clicked, exit the application.
                         btnWin.setOnAction(new EventHandler<ActionEvent>() {
 
                             public void handle(ActionEvent event) {
 
-                                System.exit(0);                            }
+                                System.exit(0);
+                            }
                         });
 
                     }
@@ -100,14 +101,15 @@ public class TicTacToe extends Application {
                         btnTie.setText("TIE GAME!");
 
                         //Downcast
-                        ((Group)root).getChildren().add(btnTie);
+                        ((Group) root).getChildren().add(btnTie);
 
                         //When the tie message is clicked, exit the application.
                         btnTie.setOnAction(new EventHandler<ActionEvent>() {
 
                             public void handle(ActionEvent event) {
 
-                                System.exit(0);                            }
+                                System.exit(0);
+                            }
                         });
 
                     }

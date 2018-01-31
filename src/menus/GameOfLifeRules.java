@@ -12,9 +12,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class GameOfLifeRules extends Application{
+public class GameOfLifeRules extends Application {
 
-    public GameOfLifeRules (Stage name) {
+    public GameOfLifeRules(Stage name) {
         start(name);
     }
 
@@ -35,7 +35,6 @@ public class GameOfLifeRules extends Application{
 
         //Set up the Game of Life.
         btn.setOnAction(new EventHandler<ActionEvent>() {
-
             public void handle(ActionEvent event) {
                 new GameOfLife(primaryStage);
             }
