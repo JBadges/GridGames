@@ -10,7 +10,9 @@ import java.awt.geom.Point2D;
 public interface I_GridSlot {
 
     Point2D getCoord();
+
     double getSize();
+
     boolean isMouseOnTop();
 
 }

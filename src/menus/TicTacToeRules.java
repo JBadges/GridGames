@@ -12,9 +12,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class TicTacToeRules extends Application{
+public class TicTacToeRules extends Application {
 
-    public TicTacToeRules (Stage name) {
+    public TicTacToeRules(Stage name) {
         start(name);
     }
 

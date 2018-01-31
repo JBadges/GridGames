@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * Created by jacks on 2017-12-16.
@@ -16,12 +15,22 @@ public class GameOfLifeGrid {
     private GameOfLifeSlot[][] grid;
     private Stage stage;
 
+    /**
+     * @param stage Stage from javaFX used to find mouse postion
+     * @param rows  The number of rows in the Game of Life simulation
+     * @param cols  The number of colums in the Game of Life simluation
+     */
     public GameOfLifeGrid(Stage stage, int rows, int cols) {
         this.stage = stage;
         resetGrid(rows, cols);
     }
 
-    public void resetGrid(int rows, int cols){
+    /**
+     * @param rows Creates a new GameOfLifeSlot array of size row
+     * @param cols Creates a new GameOfLifeSlot secondary array of size col
+     * @implNote Initializes the array with objects for each element
+     */
+    public void resetGrid(int rows, int cols) {
         grid = new GameOfLifeSlot[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
@@ -31,7 +40,11 @@ public class GameOfLifeGrid {
         }
     }
 
+    /**
+     * @implNote Simulation Rules - 1. if the surrounding colours are equal to 3 set the cell to that colour 2. if the total colours is less than 2 the cell dies 3. if the total number of colours is 2 or 3 the cell lives 4. if the total colours is > 3 the cell dies
+     */
     public void update() {
+        //Update the variables of each cell for the simulation check after
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getCols(); col++) {
                 int numberOfReds = 0;
@@ -104,6 +117,7 @@ public class GameOfLifeGrid {
                 getCell(row, col).setNumberOfBlacks(numberOfBlacks);
             }
         }
+        //BASELINE rules for game of life - Altered from the original rules to use two players (colors) instead of one
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getCols(); col++) {
                 GameOfLifeSlot cell = getCell(row, col);
@@ -126,6 +140,11 @@ public class GameOfLifeGrid {
         }
     }
 
+    /**
+     * @param row the index of the first array
+     * @param col the element index from the array chosen from row
+     * @return the AWT color value of the cell
+     */
     private Color getCellColor(int row, int col) {
         if (row < 0)
             return null;
@@ -139,31 +158,55 @@ public class GameOfLifeGrid {
         return getColor(row, col);
     }
 
+    /**
+     * @param row Row value starting at index 0
+     * @param col Col value starting at index 0
+     * @return the GameOfLifeSlot Object at the specified location
+     */
     public GameOfLifeSlot getCell(int row, int col) {
         return grid[row][col];
     }
 
+    /**
+     * @param row Row value starting at index 0
+     * @param col Col value starting at index 0
+     * @return the AWT Color value from the getColor method from the element at [row][col]
+     */
     public Color getColor(int row, int col) {
         return grid[row][col].getColor();
     }
 
+    /**
+     * @param row   Row value starting at index 0
+     * @param col   Col value starting at index 0
+     * @param color Sets the AWT color of the element at [row][col]
+     */
     public void setColor(int row, int col, Color color) {
         grid[row][col].setColor(color);
     }
 
+    /**
+     * @return the length of the frist array ([0]) since all the arrays are the same length
+     */
     public int getCols() {
         return grid[0].length;
     }
 
+    /**
+     * @return the length of the array grid
+     */
     public int getRows() {
         return grid.length;
     }
 
-    public GameOfLifeSlot findHoveredSlot(){
+    /**
+     * @return the GameOfLifeSlot object for the current mouse position
+     */
+    public GameOfLifeSlot findHoveredSlot() {
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getCols(); col++) {
                 GameOfLifeSlot gameOfLifeSlot = getCell(row, col);
-                if(gameOfLifeSlot.isMouseOnTop()){
+                if (gameOfLifeSlot.isMouseOnTop()) {
                     return gameOfLifeSlot;
                 }
             }
