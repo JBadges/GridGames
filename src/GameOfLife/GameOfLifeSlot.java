@@ -33,30 +33,58 @@ public class GameOfLifeSlot implements I_GridSlot {
         this.color = color;
     }
 
+    /**
+     * Stores the new values of Parameter numberOfBlues to the instance variable
+     * @param numberOfBlues
+     */
     public void setNumberOfBlues(int numberOfBlues) {
         this.numberOfBlues = numberOfBlues;
     }
 
+    /**
+     * Stores the new values of Parameter numberOfReds to the instance variable
+     * @param numberOfReds
+     */
     public void setNumberOfReds(int numberOfReds) {
         this.numberOfReds = numberOfReds;
     }
 
+    /**
+     * Stores the new values of Parameter numberOfBlacks to the instance variable
+     * @param numberOfBlacks
+     */
     public void setNumberOfBlacks(int numberOfBlacks) {
         this.numberOfBlacks = numberOfBlacks;
     }
 
+    /**
+     *
+     * @return the number of blue cells in the neighborhood, a 3by3 grid of cells where this cell is the centered cell
+     */
     public int getNumberOfBlues() {
         return numberOfBlues;
     }
 
+    /**
+     *
+     * @return the number of red cells in the neighborhood, a 3by3 grid of cells where this cell is the centered cell
+     */
     public int getNumberOfReds() {
         return numberOfReds;
     }
 
+    /**
+     *
+     * @return the number of black cells in the neighborhood, a 3by3 grid of cells where this cell is the centered cell
+     */
     public int getNumberOfBlacks() {
         return numberOfBlacks;
     }
 
+    /**
+     *
+     * @return the number of the same color cells as the current cell in the neighborhood, a 3by3 grid of cells where this cell is the centered cell
+     */
     public int getNumberOfSameColor() {
         if (Color.BLUE.equals(getColor()))
             return numberOfBlues;
@@ -65,10 +93,18 @@ public class GameOfLifeSlot implements I_GridSlot {
         return numberOfBlacks;
     }
 
+    /**
+     * Changes the instance variable of the AWT color to the parameter
+     * @param color
+     */
     public void setColor(Color color) {
         this.color = color;
     }
 
+    /**
+     *
+     * @return the AWT java color of the cell
+     */
     public Color getColor() {
         return color;
     }
@@ -84,8 +120,9 @@ public class GameOfLifeSlot implements I_GridSlot {
     }
 
     /**
+     * Uses MouseInfo to get absolute pointer position and uses the stage position to create a application relative mouse position
+     *
      * @return if the mouse is contained within the specified grid element
-     * @implNote uses MouseInfo to get absolute pointer position and uses the stage position to create a application relative mouse position
      */
     @Override
     public boolean isMouseOnTop() {

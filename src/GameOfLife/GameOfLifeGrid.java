@@ -26,9 +26,10 @@ public class GameOfLifeGrid {
     }
 
     /**
+     * Initializes the array with objects for each element
+     *
      * @param rows Creates a new GameOfLifeSlot array of size row
      * @param cols Creates a new GameOfLifeSlot secondary array of size col
-     * @implNote Initializes the array with objects for each element
      */
     public void resetGrid(int rows, int cols) {
         grid = new GameOfLifeSlot[rows][cols];
@@ -41,7 +42,11 @@ public class GameOfLifeGrid {
     }
 
     /**
-     * @implNote Simulation Rules - 1. if the surrounding colours are equal to 3 set the cell to that colour 2. if the total colours is less than 2 the cell dies 3. if the total number of colours is 2 or 3 the cell lives 4. if the total colours is > 3 the cell dies
+     * Simulation Rules -
+     * 1. if the surrounding colours are equal to 3 set the cell to that colour
+     * 2. if the total colours is less than 2 the cell dies
+     * 3. if the total number of colours is 2 or 3 the cell lives
+     * 4. if the total colours is > 3 the cell dies
      */
     public void update() {
         //Update the variables of each cell for the simulation check after
