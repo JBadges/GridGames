@@ -6,15 +6,18 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-
+//An abstract class for Tic Tac Toe pieces that implements the Grid Slot interface.
 public abstract class TicTacToePiece implements I_GridSlot {
 
+    //Abstract method that returns a char to find the type of piece.
     public abstract char getPieceType();
 
+    //Private references.
     private Stage stage;
     private Point2D coord;
     private double size;
 
+    //Override methods from the interface (mandatory).
     @Override
     public Point2D getCoord() {
         return this.coord;
@@ -25,6 +28,7 @@ public abstract class TicTacToePiece implements I_GridSlot {
         return this.size;
     }
 
+    //Method to figure out if the user's mouse is above a piece or not.
     @Override
     public boolean isMouseOnTop() {
         Point2D.Double mousePoint = new Point2D.Double(MouseInfo.getPointerInfo().getLocation().getX() - this.stage.getX() - 8, MouseInfo.getPointerInfo().getLocation().getY() - this.stage.getY() - 30);
@@ -33,6 +37,7 @@ public abstract class TicTacToePiece implements I_GridSlot {
         return false;
     }
 
+    //Constructor to be called by a subclass.
     public TicTacToePiece(Stage stage, Point2D coord, double size) {
         this.stage = stage;
         this.coord = coord;
